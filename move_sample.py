@@ -1,7 +1,8 @@
 from caoprov_denso_rc9 import RC9
+from common import (
+    RC9_PROJ_PATH,
+)
 import time
-
-RC9_PROJ_PATH = "RCPJ=C:\\Users\\ijiwa\\Documents\\WINCAPSIII\\VS050_RC9\\VS050_RC9\\default.rcpj"
 
 rc9 = RC9(RC9_PROJ_PATH)
 rc9.take_arm()
