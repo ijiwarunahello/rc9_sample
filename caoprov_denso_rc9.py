@@ -49,3 +49,7 @@ class RC9:
 
     def curpos(self):
         return self.arm.Execute("CurPos", "")
+
+    def get_value(self, io):
+        var = self.ctrl.AddVariable(io, "")
+        return var
