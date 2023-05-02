@@ -1,29 +1,26 @@
-import win32com.client
+from caoprov_denso_rc9 import RC9
 import time
 
-eng = win32com.client.Dispatch("CAO.CaoEngine")
+RC9_PROJ_PATH = "RCPJ=C:\\Users\\ijiwa\\Documents\\WINCAPSIII\\VS050_RC9\\VS050_RC9\\default.rcpj"
 
-ctrl = eng.Workspaces(0).AddController("RC9", "CaoProv.DENSO.RC9", "", "RCPJ=C:\\Users\\ijiwa\\Documents\\WINCAPSIII\\VS050_RC9\\VS050_RC9\\default.rcpj")
-# ctrl = eng.Workspaces(0).AddController("RC9", "CaoProv.DENSO.RC9", "", "Server=127.0.0.1")
-Arm1 = ctrl.AddRobot("Arm1", "")
+rc9 = RC9(RC9_PROJ_PATH)
+rc9.take_arm()
 
-Arm1.Execute("TakeArm", 0)
-
-res = Arm1.Execute("CurPos", "")
-print(f"Current pose: {res}")
+curpos = rc9.curpos()
+print(f"Current pose: {curpos}")
 
 print("Motor ON")
-Arm1.Execute("Motor", [1, 0])
+rc9.motor_on()
 
 print("Move P0 (Initial pose)")
-Arm1.Move(1, "@P P0", "")
+rc9.move("@P P0", 1, "")
 time.sleep(1.0)
 
 print("Move P1")
-Arm1.Move(1, "@P P1", "")
+rc9.move("@P P1", 1, "")
 time.sleep(2.0)
 
 print("Move P0 (Initial pose)")
-Arm1.Move(1, "@P P0", "")
+rc9.move("@P P0", 1, "")
 
-Arm1.Execute("GiveArm", "")
+rc9.give_arm()
