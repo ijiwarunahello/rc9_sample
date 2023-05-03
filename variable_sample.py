@@ -1,4 +1,4 @@
-from caoprov_denso_rc9 import RC9
+from controller import RC9
 from common import (
     RC9_PROJ_PATH,
 )
